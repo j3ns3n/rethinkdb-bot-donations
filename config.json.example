@@ -1,0 +1,25 @@
+{
+  "port": 3000,
+  "oauth": {
+    "client_id": "DISCORD CLIENT ID",
+    "client_secret": "DISCORD CLIENT SECRET",
+    "callback": "YOUR_WEBSITE_URL/donate/callback"
+  },
+  "paypal": {
+    "email": "PAYPAL EMAIL"
+  },
+  "rethinkdb": {
+    "silent": true,
+    "host": "IP",
+    "db": "DB NAME",
+    "user": "DB USERNAME",
+    "password": "DB PASSWORD"
+  },
+  "bot_token": "DISCORD BOT TOKEN FOR LOOKING UP USER DETAILS",
+  "donate_command": "DONATE COMMAND",
+  "websites": {
+    "paypal": "PAYPAL EMAIL",
+    "patreon": "PATREON EMAIL"
+  },
+  "webhook": "DISCORD WEBHOOK LINK"
+}
