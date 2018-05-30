@@ -22,7 +22,7 @@ class Main {
           return;
         });
       } else {
-        this.rethink.table(this.table\).get(userid).update({
+        this.rethink.table(this.table).get(userid).update({
           amount: parseFloat(parseFloat(user.amount + donation).toFixed(2))
         }).run((err) => {
           if (err) return console.error(err.stack);
