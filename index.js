@@ -81,14 +81,14 @@ app.post('/donate/webhook', (req, res) => {
     // Make sure donation is through the /donate endpoint
     if (req.body.item_name && (req.body.item_name.length > 0)) {
       // Pass to 'newDonor' function
-      newDonor(req.body.item_name, parseFloat(req.body.payment_gross), 'donated', config.sites.paypal);
+      newDonor(req.body.item_name, parseFloat(req.body.payment_gross), 'donated', config.websites.paypal);
     }
   // Else if patreon characteristics are found in POST request
   } else if (req.body.data && req.body.data.relationships) {
     // Make sure pledge has Discord details
     if (req.body.included[0].attributes.social_connections && req.body.included[0].attributes.social_connections.discord && req.body.included[0].attributes.social_connections.discord.user_id) {
       // Pass to 'newDonor' function
-      newDonor(req.body.included[0].attributes.social_connections.discord.user_id, parseInt(req.body.data.attributes.amount_cents) / 100, 'pledged', config.sites.patreon);
+      newDonor(req.body.included[0].attributes.social_connections.discord.user_id, parseInt(req.body.data.attributes.amount_cents) / 100, 'pledged', config.websites.patreon);
     }
   }
   // Send a 200 status to acknowledge recipt of POST request
