@@ -8,8 +8,8 @@
   "paypal": {
     "email": "PAYPAL EMAIL"
   },
-  "rethinkdb": {
-    "silent": true,
+  "handler": "rethinkdb",
+  "dbsettings": {
     "host": "IP",
     "db": "DB NAME",
     "user": "DB USERNAME",

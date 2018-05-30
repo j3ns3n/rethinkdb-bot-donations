@@ -12,16 +12,8 @@ const snek = require('snekfetch');
 // Config storing configuration
 const config = require('./config.json')
 
-// RethinkDBDash is pretty good, let's use that!
-/*
- *  config.host     = 'RethinkDB server IP'
- *  config.db       = 'RethinkDB database'
- *  config.user     = 'RethinkDB username'
- *  config.password = 'RethinkDB password'
- *  Any other optional config values can be found at https://github.com/neumino/rethinkdbdash#importing-the-driver
-*/
-const rethinkdb = require('rethinkdbdash');
-const r = rethinkdb(config.rethinkdb);
+const dh = require('./dbHandlers/' + config.handler + '.js');
+const donationHandler = new dh(config.dbsettings)
 
 // Redirect users on the /donate endpoint to login with Discord
 /*
@@ -117,19 +109,5 @@ const newDonor = (userid, donation, text_one, text_two) => {
       content: `💸 | \`${user.username}#${user.discriminator}\` just ${text_one} $${donation} over at <${text_two}>! See what benefits *you* can get by typing \`${config.donate_command}\`!`
     }).then(c => console.log(c))
   });
-  r.table('donators').get(userid.trim()).run((err, user) => {
-    if (err) return console.error(err.stack);
-    if (!user) {
-      r.table('donators').insert({id: userid.trim(), amount: donation}).run((err, cb) => {
-        if (err) return console.error(err.stack);
-        return;
-      });
-    } else {
-      r.table('donators').get(userid.trim()).update({
-        amount: parseFloat(parseFloat(user.amount + donation).toFixed(2))
-      }).run((err) => {
-        if (err) return console.error(err.stack);
-      });
-    }
-  });
+  donationHandler.add(userid, donation);
 }
