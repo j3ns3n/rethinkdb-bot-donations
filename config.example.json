@@ -18,8 +18,8 @@
   "bot_token": "DISCORD BOT TOKEN FOR LOOKING UP USER DETAILS",
   "donate_command": "DONATE COMMAND",
   "websites": {
-    "paypal": "PAYPAL EMAIL",
-    "patreon": "PATREON EMAIL"
+    "paypal": "PAYPAL LINK",
+    "patreon": "PATREON LINK"
   },
   "webhook": "DISCORD WEBHOOK LINK"
 }
